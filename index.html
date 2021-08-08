@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Gcode Converter</title>
+    <link href="stylesheet.css" rel="stylesheet">
+    <script src="index.js"> </script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    <style type="text/css" media="screen">
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body>
+    
+   <div class="mainOuterDiv">
+       <div style="padding: 10px;">
+           <span> Multimaterial to Swapper Gcode Converter</span>
+           <span class="aboutButtonClickable" style="margin-left: 50px; cursor: pointer;" onclick="showPage('aboutCard')"> About </span>
+           <div id="aboutCard" class="aboutPage" onclick="hidePage('aboutCard')">
+            <div style="height: 40%; width: 60%; background-color: rgb(95, 95, 95); border-radius: 15px; padding: 20px;">
+                
+                <span style="color: white; overflow-y: scroll;">
+                    Tool Created by Create Inc. 
+                    <br/><br/>
+                    Converts GCode sliced for Multimaterial capable printers to GCode that allows you to swap filaments 
+                    by hand.
+                    <br/><br/>
+                    You can see the tutorial on this video:<br/>
+                    <a href="https://youtu.be/UsSpqXZ8SoI" target="_blank" style="color: rgb(178, 255, 107);">Tutorial</a>
+                    <br/><br/>
+                    If you'd like to support me, a sub to my YouTube channel would be legendary:<br/>
+                    <a href="https://www.youtube.com/channel/UCoX27hSuROHeO68bXCgwMKQ" target="_blank" style="color: rgb(178, 255, 107);">Create Inc YouTube Channel</a>
+                    
+
+                </span>
+            </div>
+            </div>
+           <span class="aboutButtonClickable" style="margin-left: 50px; cursor: pointer;" onclick="showPage('disclaimerCard')"> Disclaimer </span>
+           <div id="disclaimerCard" class="aboutPage" onclick="hidePage('disclaimerCard')">
+            <div style="height: 40%; width: 60%; background-color: rgb(95, 95, 95); border-radius: 15px; padding: 20px;">
+                <span style="color: white; overflow-y: scroll;">
+                    Provided in an as is state without any guarantees or warrantees.
+                    <br/><br/>
+                    This is a tool that still requires an extensive amount of testing and then more testing.
+                    <br/><br/>
+                    While it is highly unlikely that you might end up with GCode that might damage your printer it isn't out of the realm of possibilities entirely.
+                    <br/><br/>
+                    I take no resposnsibility for any prints you do with this tool and I advise you to not leave your printer unattended while printing.
+                </span>
+            </div>
+            </div>
+       </div>
+       <div class= "formsSectionDiv">
+           <div class="form" style="align-items: flex-end;">
+            <div style="display: flex; flex-direction: row; align-items: center;">
+                <input id="fil0" type="text" class="inputBox" placeholder="Filament 0" onchange="setValue('fil0')"/>
+                <span>:</span>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center;">
+                <input id="fil1" type="text" class="inputBox" placeholder="Filament 1" onchange="setValue('fil1')"/>
+                <span>:</span>
+            </div><div style="display: flex; flex-direction: row; align-items: center;">
+                <input id="fil2" type="text" class="inputBox" placeholder="Filament 2" onchange="setValue('fil2')"/>
+                <span>:</span>
+            </div><div style="display: flex; flex-direction: row; align-items: center;">
+                <input id="fil3" type="text" class="inputBox" placeholder="Filament 3" onchange="setValue('fil3')"/>
+                <span>:</span>
+            </div><div style="display: flex; flex-direction: row; align-items: center;">
+                <input id="fil4" type="text" class="inputBox" placeholder="Filament 4" onchange="setValue('fil4')"/>
+                <span>:</span>
+            </div>
+           </div>
+           <div class="form" style="align-items: flex-start;">
+            <div style="display: flex; flex-direction: row;">
+                <input type="number" id="fil0_x" onChange="setPosition('fil0_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 0"/>
+                <input type="number" id="fil0_y" onChange="setPosition('fil0_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <input type="number" id="fil1_x" onChange="setPosition('fil1_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 250"/>
+                <input type="number" id="fil1_y" onChange="setPosition('fil1_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <input type="number" id="fil2_x" onChange="setPosition('fil2_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 0"/>
+                <input type="number" id="fil2_y" onChange="setPosition('fil2_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 210"/>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <input type="number" id="fil3_x" onChange="setPosition('fil3_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 250"/>
+                <input type="number" id="fil3_y" onChange="setPosition('fil3_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 210"/>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <input type="number" id="fil4_x" onChange="setPosition('fil4_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 125"/>
+                <input type="number" id="fil4_y" onChange="setPosition('fil4_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+            </div>
+           </div>
+           
+       </div>
+       <div style="display: flex; flex:1; justify-content: center;" >
+        <label for="file-upload" class="inputBox fileInput">
+            <i class="fa fa-cloud-upload"></i> Upload File
+        </label>
+        <input id="file-upload" type="file" onchange="processFile()"/>
+       
+        <select name="cars" id="cars" class="selector">
+            <option value="PrusaMk3s">Prusa Mk3s</option>
+          </select>
+       </div>
+   </div>
+</body>
+
+</html>
