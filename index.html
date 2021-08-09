@@ -78,24 +78,24 @@
            </div>
            <div class="form" style="align-items: flex-start;">
             <div style="display: flex; flex-direction: row;">
-                <input type="number" id="fil0_x" onChange="setPosition('fil0_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 0"/>
-                <input type="number" id="fil0_y" onChange="setPosition('fil0_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+                <input type="number" id="fil0_x" onChange="setPosition('fil0_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" />
+                <input type="number" id="fil0_y" onChange="setPosition('fil0_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" />
             </div>
             <div style="display: flex; flex-direction: row;">
-                <input type="number" id="fil1_x" onChange="setPosition('fil1_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 250"/>
-                <input type="number" id="fil1_y" onChange="setPosition('fil1_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+                <input type="number" id="fil1_x" onChange="setPosition('fil1_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" />
+                <input type="number" id="fil1_y" onChange="setPosition('fil1_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" />
             </div>
             <div style="display: flex; flex-direction: row;">
-                <input type="number" id="fil2_x" onChange="setPosition('fil2_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 0"/>
-                <input type="number" id="fil2_y" onChange="setPosition('fil2_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 210"/>
+                <input type="number" id="fil2_x" onChange="setPosition('fil2_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" />
+                <input type="number" id="fil2_y" onChange="setPosition('fil2_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" />
             </div>
             <div style="display: flex; flex-direction: row;">
-                <input type="number" id="fil3_x" onChange="setPosition('fil3_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 250"/>
-                <input type="number" id="fil3_y" onChange="setPosition('fil3_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 210"/>
+                <input type="number" id="fil3_x" onChange="setPosition('fil3_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" />
+                <input type="number" id="fil3_y" onChange="setPosition('fil3_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" />
             </div>
             <div style="display: flex; flex-direction: row;">
-                <input type="number" id="fil4_x" onChange="setPosition('fil4_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" placeholder="X: 125"/>
-                <input type="number" id="fil4_y" onChange="setPosition('fil4_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" placeholder="Y: 0"/>
+                <input type="number" id="fil4_x" onChange="setPosition('fil4_x')" style="margin-right: 3px;" type="text" class="inputBox smallInput" />
+                <input type="number" id="fil4_y" onChange="setPosition('fil4_y')" style="margin-left: 3px;" type="text" class="inputBox smallInput" />
             </div>
            </div>
            
@@ -106,9 +106,17 @@
         </label>
         <input id="file-upload" type="file" onchange="processFile()"/>
        
-        <select name="cars" id="cars" class="selector">
+        <select name="printers" id="printers" class="selector" onchange="reloadBedConstraints()">
             <option value="PrusaMk3s">Prusa Mk3s</option>
+            <option value="PrusaMini">Prusa Mini/Mini+</option>
+            <option value="Ender3">Ender 3 Vanilla</option>
           </select>
+
+          <script src="selectorScripts.js"> </script>
+          <label for="config-download" class="inputBox fileInput">
+            <i class="fa fa-cloud-download"></i> Downdload Config
+        </label>
+        <button id="config-download" onclick="downloadConfig()" style="display: none;"/>
        </div>
    </div>
 </body>
